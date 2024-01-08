@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:magic_counter/shared/constants/app_colors.dart';
 
 class SimpleRoundButton extends StatelessWidget {
   final String buttonText;
-  final int? width, height;
+  final double? fontSize;
   final Color? textColor;
-  final double? textSize;
-  final Color? backgroundColor;
+  final TextAlign? textAlign;
+  final int? width, height;
   final Function? onPressed;
+  final Color? backgroundColor;
 
   const SimpleRoundButton({
     super.key,
     required this.buttonText,
+    this.fontSize,
+    this.textColor,
+    this.textAlign,
     this.width,
     this.height,
-    this.backgroundColor,
-    this.textColor,
-    this.textSize,
     this.onPressed,
+    this.backgroundColor,
   });
 
   @override
@@ -27,8 +30,9 @@ class SimpleRoundButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        backgroundColor:
-            backgroundColor == null ? Colors.blue : backgroundColor!,
+        backgroundColor: backgroundColor == null
+            ? AppColors.buttonPrimaryColor
+            : backgroundColor!,
         fixedSize: Size(
           width == null ? 80 : width!.toDouble(),
           height == null ? 40 : height!.toDouble(),
@@ -38,8 +42,9 @@ class SimpleRoundButton extends StatelessWidget {
       onPressed: onPressed == null ? () {} : onPressed as void Function()?,
       child: Text(
         buttonText,
+        textAlign: textAlign ?? TextAlign.center,
         style: TextStyle(
-          fontSize: textSize ?? 20,
+          fontSize: fontSize ?? 20,
           fontWeight: FontWeight.bold,
           color: textColor ?? Colors.white,
         ),
