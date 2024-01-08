@@ -19,8 +19,6 @@ class Counter extends StatefulWidget {
 class _CounterState extends State<Counter> {
   int count = -998;
 
-  get counterColor => null;
-
   void _increment() {
     setState(() {
       if (count < 999) {
@@ -39,18 +37,19 @@ class _CounterState extends State<Counter> {
 
   @override
   Widget build(BuildContext context) {
+    print('I am building...');
     return SizedBox(
       width: 20,
       height: 20,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Counter\'s name ',
-                style: TextStyle(
+                widget.name,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -128,15 +127,22 @@ class _CounterState extends State<Counter> {
               ),
             ],
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Icon',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              TextButton(
+                onPressed: () {
+                  build(context);
+                },
+                child: Container(
+                  width: 20,
+                  height: 20,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/logo.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
               ),
             ],
